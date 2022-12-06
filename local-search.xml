@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Unity_2D光照</title>
+    <link href="/2022/12/06/Unity-2D%E5%85%89%E7%85%A7/"/>
+    <url>/2022/12/06/Unity-2D%E5%85%89%E7%85%A7/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>Unity</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Unity 2D光照</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>hexo常用命令</title>
     <link href="/2022/12/01/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <url>/2022/12/01/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
@@ -11,10 +36,16 @@
     <content type="html"><![CDATA[<p>新建文章</p><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">hexo <span class="hljs-keyword">new</span> <span class="hljs-type">post</span> 文章名<br></code></pre></td></tr></table></figure><p>新建页面（一般不进行修改的）</p><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">hexo <span class="hljs-keyword">new</span> <span class="hljs-type">page</span> 页面名<br></code></pre></td></tr></table></figure><p>提交到GitHub</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo clean</span><br><span class="hljs-attribute">hexo g</span><br><span class="hljs-attribute">hexo d</span><br></code></pre></td></tr></table></figure>]]></content>
     
     
+    <categories>
+      
+      <category>常用软件命令</category>
+      
+    </categories>
+    
     
     <tags>
       
-      <tag>命令</tag>
+      <tag>Hexo</tag>
       
     </tags>
     
