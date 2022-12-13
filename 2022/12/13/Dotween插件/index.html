@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://example.com/2022/12/13/Dotween%E6%8F%92%E4%BB%B6/Punch.png">
 <meta property="og:image" content="http://example.com/2022/12/13/Dotween%E6%8F%92%E4%BB%B6/Material.png">
 <meta property="article:published_time" content="2022-12-13T14:13:50.000Z">
-<meta property="article:modified_time" content="2022-12-13T15:11:48.310Z">
+<meta property="article:modified_time" content="2022-12-13T15:50:16.113Z">
 <meta property="article:author" content="LuoXiaoHei">
 <meta property="article:tag" content="Dotween">
 <meta name="twitter:card" content="summary_large_image">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.4k 字
+          9.9k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          78 分钟
+          83 分钟
         
       </span>
     
@@ -665,6 +665,17 @@ transform.DOTogglePause();
     yield return _tweener.WaitForStart();
 &#125;
 </code></pre>
+<h3 id="三、Dotween-To"><a href="#三、Dotween-To" class="headerlink" title="三、Dotween.To()"></a>三、Dotween.To()</h3><p>有些时候，上面的常用API可能满足不了我们的需求，比如UI文本的滚动数字，这个时候可以用Dotween.To()</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-number">1</span>）一般写法<br>DOTween.To(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>变量, x =&gt; 变量 = x, 变量目标值, 过渡时间);<br><span class="hljs-number">2</span>）也可以增加回调、设置曲线等等<br>DOTween.To(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> 变量, x =&gt; 变量 = x, 变量目标值, 过渡时间)<br>.OnComplete(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span><br>&#123; <br>	<span class="hljs-regexp">//</span> 具体的回调<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h4 id="（1）实现数字滚动"><a href="#（1）实现数字滚动" class="headerlink" title="（1）实现数字滚动"></a>（1）实现数字滚动</h4><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-number">1</span>）写法<span class="hljs-number">1</span><br>DOTween.<span class="hljs-constructor">To(<span class="hljs-params">value</span> =&gt; &#123; <span class="hljs-params">text</span>.<span class="hljs-params">text</span> = Mathf.Floor(<span class="hljs-params">value</span>)</span>.<span class="hljs-constructor">ToString()</span>; &#125;, startValue: <span class="hljs-number">0</span>, endValue: <span class="hljs-number">4396</span>, duration: <span class="hljs-number">1</span>f);<br><br><span class="hljs-number">2</span>）写法<span class="hljs-number">2</span><br><span class="hljs-built_in">int</span> curCoin = <span class="hljs-number">0</span>;<br>DOTween.<span class="hljs-constructor">To(()</span> =&gt; curCoin,<span class="hljs-function"> <span class="hljs-params">vaue</span> =&gt;</span><br>&#123;<br>    curCoin = vaue;<br>    text.text = curCoin.<span class="hljs-constructor">ToString()</span>;<br>&#125;, <span class="hljs-number">4000</span>, <span class="hljs-number">2</span>).<span class="hljs-constructor">SetEase(Ease.InOutSine)</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 
                 
               </div>
