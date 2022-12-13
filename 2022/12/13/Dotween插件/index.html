@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LuoXiaoHei">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Dotween篇-01参考博客Dotween常用方法详解_蓝天小僧（Andy）的博客-CSDN博客_dotween 主要是这个博客没有目录，同时防止我找不到，我主要是将其复制过来，也会加上一些其他的Dotween API 一、Unity常用组件拓展方法(1) Transform拓展方法1）Position1234567891）改变世界坐标移动方法，第一个参数是要移动到的目标点，不是移动这个向量的距">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dotween插件">
+<meta property="og:url" content="http://example.com/2022/12/13/Dotween%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:site_name" content="我不是罗小黑">
+<meta property="og:description" content="Dotween篇-01参考博客Dotween常用方法详解_蓝天小僧（Andy）的博客-CSDN博客_dotween 主要是这个博客没有目录，同时防止我找不到，我主要是将其复制过来，也会加上一些其他的Dotween API 一、Unity常用组件拓展方法(1) Transform拓展方法1）Position1234567891）改变世界坐标移动方法，第一个参数是要移动到的目标点，不是移动这个向量的距">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/12/13/Dotween%E6%8F%92%E4%BB%B6/Punch.png">
+<meta property="og:image" content="http://example.com/2022/12/13/Dotween%E6%8F%92%E4%BB%B6/Material.png">
+<meta property="article:published_time" content="2022-12-13T14:13:50.000Z">
+<meta property="article:modified_time" content="2022-12-13T15:11:48.310Z">
+<meta property="article:author" content="LuoXiaoHei">
+<meta property="article:tag" content="Dotween">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/12/13/Dotween%E6%8F%92%E4%BB%B6/Punch.png">
+  
+  
+  
+  <title>Dotween插件 - 我不是罗小黑</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"JJ0qJNdRXo48EekoqmBPKx7h-gzGzoHsz","app_key":"waRQCBXK6dbmxHXzxtm30P7w","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>我不是罗小黑</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Dotween插件"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-13 22:13" pubdate>
+          2022年12月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          78 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Dotween插件</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Dotween篇-01"><a href="#Dotween篇-01" class="headerlink" title="Dotween篇-01"></a>Dotween篇-01</h2><h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zcaixzy5211314/article/details/84886663">Dotween常用方法详解_蓝天小僧（Andy）的博客-CSDN博客_dotween</a></p>
+<p>主要是这个博客没有目录，同时防止我找不到，我主要是将其复制过来，也会加上一些其他的Dotween API</p>
+<h3 id="一、Unity常用组件拓展方法"><a href="#一、Unity常用组件拓展方法" class="headerlink" title="一、Unity常用组件拓展方法"></a>一、Unity常用组件拓展方法</h3><h4 id="1-Transform拓展方法"><a href="#1-Transform拓展方法" class="headerlink" title="(1) Transform拓展方法"></a>(1) Transform拓展方法</h4><h5 id="1）Position"><a href="#1）Position" class="headerlink" title="1）Position"></a>1）Position</h5><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-number">1</span>）改变世界坐标<br>移动方法，第一个参数是要移动到的目标点，不是移动这个向量的距离<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOMove</span>(new Vector3(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-number">2</span>);<br>只控制x轴上的移动，其他两个方向同理<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOMoveX</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br><br><span class="hljs-number">2</span>）改变局部坐标<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOLocalMove</span>(new Vector3(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-number">2</span>);<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOLocalMoveX</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+<h5 id="2）Rotation"><a href="#2）Rotation" class="headerlink" title="2）Rotation"></a>2）Rotation</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-number">1</span>）世界旋转<br>旋转到给定的值，改变的是欧拉角<br>transform.DORotate(<span class="hljs-keyword">new</span> <span class="hljs-type">Vector3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">90</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>);<br>旋转到给定的值，改变的是四元数<br>transform.DORotateQuaternion(<span class="hljs-keyword">new</span> <span class="hljs-type">Quaternion</span>(<span class="hljs-number">0.1</span>f, <span class="hljs-number">0.1</span>f, <span class="hljs-number">0.1</span>f, <span class="hljs-number">0.1</span>f), <span class="hljs-number">2</span>);<br><br><span class="hljs-number">2</span>）局部旋转<br>旋转到给定的值，改变的是欧拉角<br>transform.DOLocalRotate(<span class="hljs-keyword">new</span> <span class="hljs-type">Vector3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">90</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>);<br>旋转到给定的值，改变的是四元数<br>transform.DOLocalRotateQuaternion(<span class="hljs-keyword">new</span> <span class="hljs-type">Quaternion</span>(<span class="hljs-number">0.1</span>f, <span class="hljs-number">0.1</span>f, <span class="hljs-number">0.1</span>f, <span class="hljs-number">0.1</span>f), <span class="hljs-number">2</span>);<br><br>在给定时间内，平滑的让自身的z轴正方向指向目标点<br>transform.DOLookAt(<span class="hljs-keyword">new</span> <span class="hljs-type">Vector3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+<h5 id="3）Scale"><a href="#3）Scale" class="headerlink" title="3）Scale"></a>3）Scale</h5><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss">同上面一样，这里改变物体的缩放到目标值<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOScale</span>(new Vector3(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), <span class="hljs-number">2</span>);<br>其他两个轴向同理<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOScaleX</span>(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+<p>4）Pauch</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs haxe">第一个参数 punch：表示方向及强度<br>第二个参数 duration：表示动画持续时间<br>第三个参数 vibrato：震动次数<br>第四个参数 elascity: <span class="hljs-type"></span>这个值是<span class="hljs-number">0</span>到<span class="hljs-number">1</span>的<br>当为<span class="hljs-number">0</span>时，就是在起始点到目标点之间运动<br>不为<span class="hljs-number">0</span>时，会把你赋的值乘上一个参数，作为你运动方向反方向的点，物体在这个点和目标点之间运动<br>transform.DOPunchPosition(<span class="hljs-keyword">new</span> <span class="hljs-type">Vector3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0.1</span>f);<br>transform.DOPunchRotation(<span class="hljs-keyword">new</span> <span class="hljs-type">Vector3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">90</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0.1</span>f);<br>transform.DOPunchScale(<span class="hljs-keyword">new</span> <span class="hljs-type">Vector3</span>(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0.1</span>f);<br></code></pre></td></tr></table></figure>
+
+<p>以position为例，elascity的取值是 0 到 1 的<br>elascity为0时，物体就在起始点和目标点之间运动<br>elascity不为0时，会自动计算，产生一个反向点，数值越大方向点离的越远</p>
+<p><img src="Punch.png" srcset="/img/loading.gif" lazyload alt="pauch示例"></p>
+<h5 id="5）Shake"><a href="#5）Shake" class="headerlink" title="5）Shake"></a>5）Shake</h5><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs scss">参数：持续时间，力量，震动，随机性，淡出<br>力量：实际就是震动的幅度,可以理解成相机施加的力的大小 使用Vector3可以选择每个轴向不同的强度<br>震动：震动次数<br>随机性：改变震动方向的随机值（大小：<span class="hljs-number">0</span>~<span class="hljs-number">180</span>）<br>淡出：就是运动最后是否缓慢移动回到原本位置<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOShakePosition</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">50</span>, true);<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOShakeRotation</span>(<span class="hljs-number">3</span>);<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOShakeScale</span>(<span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+
+<h5 id="6）Blend"><a href="#6）Blend" class="headerlink" title="6）Blend"></a>6）Blend</h5><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs scss">带Blend名称的方法，允许混合动画<br>原本同时执行两个Move方法，只会执行最新的一个动画命令<br>例如：<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOMove</span>(Vector3.one, <span class="hljs-number">2</span>);<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOMove</span>(Vector3.one * <span class="hljs-number">2</span>, <span class="hljs-number">2</span>);<br>结果是物体运动到了（<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>）坐标上<br><br>DOBlendableMoveBy方法有两个特点<br><span class="hljs-number">1</span>）允许多个同时执行<br>例如：<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOBlendableMoveBy</span>(new Vector3(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span>);<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOBlendableMoveBy</span>(new Vector3(-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">1</span>);<br>假设起始点为（<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>），最后动画停止时的坐标就是（<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>）<br><span class="hljs-number">2</span>）它是增量动画<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOBlendableMoveBy</span>(new Vector3(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span>);<br>假设其实点为（<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>），最后动画停止时的坐标就是（<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>）<br>它的参数不是目标点，而是要移动的量<br><br>以下三个函数同理<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOBlendableRotateBy</span>()<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOBlendableScaleBy</span>()<br><span class="hljs-attribute">transform</span><span class="hljs-selector-class">.DOBlendablePunchRotation</span>()<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-Camera拓展方法"><a href="#2-Camera拓展方法" class="headerlink" title="(2) Camera拓展方法"></a>(2) Camera拓展方法</h4><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-number">1</span>）调整屏幕视角的宽高比 第一个参数是宽高的比值<br>camera.<span class="hljs-constructor">DOAspect(0.6f, 2)</span>;<br><br><span class="hljs-number">2</span>）改变相机background参数的颜色<br>camera.<span class="hljs-constructor">DOColor(Color.<span class="hljs-params">blue</span>, 2)</span>;<br><br><span class="hljs-number">3</span>）改变相机近切面的值<br>camera.<span class="hljs-constructor">DONearClipPlane(200, 2)</span>;<br><br><span class="hljs-number">4</span>）改变相机远切面的值<br>camera.<span class="hljs-constructor">DOFarClipPlane(2000, 2)</span>;<br><br><span class="hljs-number">5</span>）改变相机FOV的值<br>camera.<span class="hljs-constructor">DOFieldOfView(30, 2)</span>;<br><br><span class="hljs-number">6</span>）改变相机正交大小<br>camera.<span class="hljs-constructor">DOOrthoSize(10, 2)</span>;<br><br><span class="hljs-number">7</span>）按照屏幕像素计算的显示范围<br>camera.<span class="hljs-constructor">DOPixelRect(<span class="hljs-params">new</span> Rect(0f, 0f, 600f, 500f)</span>, <span class="hljs-number">2</span>);<br><br><span class="hljs-number">8</span>）按照屏幕百分比计算的显示范围<br>camera.<span class="hljs-constructor">DORect(<span class="hljs-params">new</span> Rect(0.5f, 0.5f, 0.5f, 0.5f)</span>, <span class="hljs-number">2</span>);<br><br><span class="hljs-number">9</span>）相机震动<br>相机震动效果 参数：持续时间，力量，震动，随机性，淡出<br>力量：实际就是震动的幅度,可以理解成相机施加的力的大小 使用Vector3可以选择每个轴向不同的强度<br>震动：震动次数<br>随机性：改变震动方向的随机值（大小：<span class="hljs-number">0</span>~<span class="hljs-number">180</span>）<br>淡出：就是运动最后是否缓慢移动回到原本位置<br>camera.<span class="hljs-constructor">DOShakePosition(1, 10, 10, 50, <span class="hljs-params">false</span>)</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-Material拓展方法"><a href="#3-Material拓展方法" class="headerlink" title="(3) Material拓展方法"></a>(3) Material拓展方法</h4><pre><code class="hljs">1）改变颜色
+material.DOColor(Color.black, 2);
+
+2）按照shader的属性名，修改颜色
+material.DOColor(Color.clear, &quot;_Color&quot;, 2);
+
+3）修改alpha值
+material.DOFade(0, 2);
+
+4）颜色渐变
+Gradient是unity的渐变编辑器（下面有渐变编辑器的图）
+material.DOGradientColor(Gradient, &quot;_Color&quot;, 3);
+
+5）改变材质offset的值
+material.DOOffset(new Vector2(1, 1), 2);
+
+6）改变提供的shader属性的名称对应的Vector4值
+material.DOVector(new Vector4(0, 0, 0, 1), &quot;_Color&quot;, 3);
+
+7）颜色混合
+跟位置混合动画同理，可以同时执行而不干扰，产生混合在一起的颜色
+material.DOBlendableColor(Color.red, &quot;_Color&quot;, 3);
+</code></pre>
+<p>渐变编辑器</p>
+<p><img src="Material.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="4-Text拓展方法"><a href="#4-Text拓展方法" class="headerlink" title="(4) Text拓展方法"></a>(4) Text拓展方法</h4><pre><code class="hljs">头三个都是常规方法，不多介绍了
+text.DOColor(Color.black, 2);
+text.DOFade(0, 2);
+text.DOBlendableColor(Color.black, 2);
+
+这个方法比较有意思
+是把第一个参数传入的内容按照时间，一个字一个字的输入到文本框中
+text.DOText(&quot;context&quot;, 2);
+</code></pre>
+<h3 id="二、Dotween常用方法"><a href="#二、Dotween常用方法" class="headerlink" title="二、Dotween常用方法"></a>二、Dotween常用方法</h3><h4 id="1-Sequence"><a href="#1-Sequence" class="headerlink" title="(1) Sequence"></a>(1) Sequence</h4><pre><code class="hljs">Sequence quence = DOTween.Sequence();
+
+1）添加动画到队列中
+quence.Append(transform.DOMove(Vector3.one, 2));
+
+2）添加时间间隔
+quence.AppendInterval(1);
+
+3）按时间点插入动画
+第一个参数为时间，此方法把动画插入到规定的时间点
+以这句话为例，它把DORotate动画添加到此队列的0秒时执行，虽然它不是最先添加进队列的
+quence.Insert(0, transform.DORotate(new Vector3(0, 90, 0), 1));
+
+4）加入当前动画
+Join会加入和让动画与当前正在执行的动画一起执行
+如下两行代码，DOMove会和DOScale一起执行
+quence.Append(transform.DOScale(new Vector3(2, 2, 2), 2));
+quence.Join(transform.DOMove(Vector3.zero, 2));
+
+5）预添加动画
+预添加 会直接添加动画到Append的前面，也就是最开始的时候
+quence.Prepend(transform.DOScale(Vector3.one * 0.5f, 1));
+这里需要特别说一下预添加的执行顺序问题
+它这里也采取了队列的性质，不过，预添加与原本的的队列相比是一个反向队列
+例如：
+Sequence quence = DOTween.Sequence();
+quence.Append(transform.DOMove(Vector3.one, 2));
+quence.Prepend(transform.DOMove(-Vector3.one*2, 2));
+quence.PrependInterval(1);
+执行顺序是 PrependInterval----Prepend-----Append
+就是最后添加的会在队列的最顶端
+
+6）预添加时间间隔
+quence.PrependInterval(1);
+
+回调函数
+
+1）预添加回调
+quence.PrependCallback(PreCallBack);
+
+2）在规定的时间点加入回调
+quence.InsertCallback(0, InsertCallBack);
+
+3）添加回调
+quence.AppendCallback(CallBack);
+</code></pre>
+<h4 id="2-Tweener（TweenParams）的设置"><a href="#2-Tweener（TweenParams）的设置" class="headerlink" title="(2) Tweener（TweenParams）的设置"></a>(2) Tweener（TweenParams）的设置</h4><pre><code class="hljs">TweenParams para = new TweenParams();
+
+1）设置动画循环 
+第一个参数是循环次数  -1代表无限循环
+第二个参数是循环方式 
+Restart  重新开始  
+Yoyo   从起始点运动到目标点，再从目标点运动回来，这样循环 
+Incremental   一直向着运动方向运动
+para.SetLoops(-1, LoopType.Yoyo);
+
+2）设置参数
+transform.DOMove(Vector3.one, 2).SetAs(para);
+
+3)设置自动杀死动画
+transform.DOMove(Vector3.one, 1).SetAutoKill(true);
+
+4)from补间
+例如;
+transform.DOMove(Vector3.one, 2).From(true);
+From参数 isRelative(相对的)：
+为true，传入的就是偏移量，即当前坐标 + 传入值 = 目标值
+为falese，传入的就是目标值，即传入值 = 目标值
+
+5)设置动画延时 
+transform.DOMove(Vector3.one, 2).SetDelay(1);
+
+6）设置动画运动以速度为基准
+例如：
+transform.DOMove(Vector3.one, 1).SetSpeedBased();
+使用SetSpeedBased时，移动方式就变成以速度为基准
+原本表示持续时间的第二个参数，就变成表示速度的参数，每秒移动的单位数
+
+7）设置动画ID
+transform.DOMove(Vector3.one, 2).SetId(&quot;Id&quot;);
+
+8）设置是否可回收
+为true的话，动画播放完会被回收，缓存下来，不然播完就直接销毁
+transform.DOMove(Vector3.one, 2).SetRecyclable(true);
+
+9）设置动画为增量运动
+例如：
+transform.DOMove(Vector3.one, 2).SetRelative(true);
+SetRelative参数 isRelative(相对的)：
+为true，传入的就是偏移量，即当前坐标 + 传入值 = 目标值
+为falese，传入的就是目标值，即传入值 = 目标值
+
+10）设置动画的帧函数
+例如：
+transform.DOMove(Vector3.one, 2).SetUpdate(UpdateType.Normal, true);
+第一个参数 UpdateType :选择使用的帧函数
+UpdateType.Normal:更新每一帧中更新要求。 
+UpdateType.Late:在LateUpdate调用期间更新每一帧。 
+UpdateType.Fixed:使用FixedUpdate调用进行更新。 
+UpdateType.Manual:通过手动DOTween.ManualUpdate调用进行更新。
+第二个参数：为TRUE，则补间将忽略Unity的Time.timeScale
+</code></pre>
+<h4 id="3-Ease-运动曲线的设置"><a href="#3-Ease-运动曲线的设置" class="headerlink" title="(3) Ease 运动曲线的设置"></a>(3) Ease 运动曲线的设置</h4><pre><code class="hljs">1）以Ease枚举作为参数
+例如：
+transform.DOMove(Vector3.one, 2).SetEase(Ease.Flash, 3, 0f);
+第二个参数 Amplitude(振幅)：实际就是移动次数，起始点移动到目标算移动一次，再移动回来移动两次
+第三个参数 period 值的范围是 - 1~1
+值 &gt; 0时，为活动范围的衰减值，活动范围会由大变小
+值 = 0时，就是均匀的在起始坐标和目标坐标之间运动
+值 &lt; 0时，会施加一个向目标坐标的一个力，活动范围一点点增大，最后逼近目标点
+这两个参数只对Flash, InFlash, OutFlash, InOutFlash这四种曲线有用，其他的曲线起作用的就只有Ease枚举参数
+
+2）使用AnimationCurve当作参数
+例如：
+transform.DOMove(Vector3.one * 2, 1).SetEase(curve);
+AnimationCurve 横轴是时间,不过不是具体的时间，而是时间比例
+AnimationCurve 纵轴是倍数
+假设纵轴的值为v，传入DOMove的第一个参数endValue是e，起始点坐标是s
+此物体最后动画结束时的实际坐标即为 v* （e -s）+ s
+
+3）以回调函数为参数
+例如：
+transform.DOMove(Vector3.one * 2, 1).SetEase(MyEaseFun);
+
+//返回值是运动距离的百分比 值应为0~1之间，最后的值需为1,不然停留的位置不会是目标位置
+private float MyEaseFun(float time, float duration, float overshootOrAmplitude, float period)
+&#123;
+    return time / duration;
+&#125;
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://easings.net/">Easing Functions Cheat Sheet (easings.net)</a>查看一些基本曲线的详情</p>
+<h4 id="4-回调函数"><a href="#4-回调函数" class="headerlink" title="(4) 回调函数"></a>(4) 回调函数</h4><pre><code class="hljs">1）动画完成回调
+transform.DOMove(Vector3.one, 2).OnComplete(() =&gt; &#123; &#125;);
+
+2）动画被杀死时回调
+transform.DOMove(Vector3.one, 2).OnKill(() =&gt; &#123; &#125;);
+
+3）动画播放时回调,暂停后重新播放也会调用
+transform.DOMove(Vector3.one, 3).OnPlay(() =&gt; &#123; &#125;);
+
+4）动画暂停时回调
+transform.DOMove(Vector3.one, 2).OnPause(() =&gt; &#123; &#125;);
+
+5）动画回退时回调
+以下情况会被调用
+使用DORestart重新播放时
+使用Rewind倒播动画完成时
+使用DOFlip翻转动画完成时
+使用DOPlayBackwards反向播放动画完成时
+transform.DOMove(Vector3.one, 2).OnRewind(() =&gt; &#123; &#125;);
+
+6）只在第一次播放动画时调用，在play之前调用
+transform.DOMove(Vector3.one, 2).OnStart(() =&gt; &#123; &#125;);
+
+7）完成单个循环周期时触发
+transform.DOMove(Vector3.one, 2).OnStepComplete(() =&gt; &#123; &#125;);
+8）帧回调
+transform.DOMove(Vector3.one, 2).OnUpdate(() =&gt; &#123; &#125;);
+
+9）在路径动画时，改变目标点时的回调，参数为当前目标点的下标
+transform.DOMove(Vector3.one, 2).OnWaypointChange((value) =&gt; &#123; &#125;);
+</code></pre>
+<h4 id="5-动画控制方法"><a href="#5-动画控制方法" class="headerlink" title="(5) 动画控制方法"></a>(5) 动画控制方法</h4><pre><code class="hljs">1)播放
+transform.DOPlay();
+
+2)暂停
+transform.DOPause();
+
+3)重播
+transform.DORestart();
+
+4)倒播，此方法会直接退回起始点
+transform.DORewind();
+
+5)平滑倒播，此方法会按照之前的运动方式从当前位置退回起始点
+transform.DOSmoothRewind();
+
+6)杀死动画
+transform.DOKill();
+
+7)翻转补间的方向
+transform.DOFlip();
+
+8)跳转时间点
+第一个参数跳转的时间点，第二个参数是跳转后是否播放动画
+transform.DOGoto(1.5f, true);
+
+9）反向播放动画
+反向播放动画，在动画播放到一半时执行，会退回起始点，在一开始执行看不到效果是因为，物体本身就在起始点
+transform.DOPlayBackwards();
+
+10）正向播放动画
+正向播放动画
+transform.DOPlayForward();
+
+11）TogglePause
+当暂停时，执行就继续播放，播放时，执行就暂停
+transform.DOTogglePause();
+</code></pre>
+<h4 id="6-获取数据方法"><a href="#6-获取数据方法" class="headerlink" title="(6) 获取数据方法"></a>(6) 获取数据方法</h4><pre><code class="hljs">一、类方法
+    1）返回所有暂停的动画，没有则返回null
+    DOTween.PausedTweens();
+
+    2）返回所有真正播放的动画，没有则返回null
+    DOTween.PlayingTweens();
+
+    3）获取给定ID的数组
+    例如：
+    DOTween.TweensById(&quot;id&quot;, true);
+    返回满足条件的动画数组
+    第一个参数是动画的ID
+    第二个参数是是否只收集正在播放的动画
+
+    4）返回给定对象的数组
+    例如：
+    DOTween.TweensByTarget(transform, true);
+    返回满足条件的动画数组
+    第一个参数是播放动画的对象
+    例如：transform.DOMove(Vector3.one, 2); 第一个参数就传入transform
+    material.DOColor(Color.White, 2); 第一个参数就传入材质对象material
+    第二个参数是是否只收集正在播放的动画
+
+    5）收集传入的对象是否有动画在活动
+    例如：
+    DOTween.IsTweening(transform);
+    第一个参数为检测的对象
+    第二个参数为是否检测动画在播放状态
+    为true时，给定对象在播放状态时 返回true
+    为false时，只检测给定对象是否有动画（在pause状态时也算）有则返回true
+
+    6）正在播放的动画的总数，目前处于延迟播放状态的动画也算
+    DOTween.TotalPlayingTweens();
+
+二、实例方法
+    _tweener = transform.DOMove(Vector3.one, 2)
+
+    1）表示动画执行时间的属性，可读可写
+    _tweener.fullPosition = 1;
+
+    2）表示动画执行完的次数
+    _tweener.CompletedLoops()
+
+    3）获取动画的延迟时间
+    _tweener.Delay();
+
+    4）获取动画的持续时间
+    参数为true 表示计算循环的时间，无限循环为Infinity
+    _tweener.Duration(false)
+
+    5）动画已播放的时间
+    参数为true 表示计算循环的时间
+    _tweener.Elapsed()
+
+    6）返回动画进度的百分比
+    起始点为0 目标点为1 当yoyo循环模式下，值会从0变到1再从1变到0
+    _tweener.ElapsedDirectionalPercentage()
+
+    7）返回动画区间已用的百分比
+    单次循环的数值为0到1
+    参数为 是否包含循环 为true时 返回值是循环总区间的已用百分比 若为无限循环 返回值为0
+    _tweener.ElapsedPercentage(true)
+
+    8）动画是否在活动
+    _tweener.IsActive();
+
+    9）是否是反向动画
+    _tweener.IsBackwards();
+
+    10）动画是否完成
+    _tweener.IsComplete();
+
+    11）是否以初始化
+    _tweener.IsInitialized();
+
+    12）是否正在播放
+    _tweener.IsPlaying();
+
+    13）返回循环次数，  无限循环为Infinity
+    _tweener.Loops();
+</code></pre>
+<h4 id="7-携程方法"><a href="#7-携程方法" class="headerlink" title="(7) 携程方法"></a>(7) 携程方法</h4><pre><code class="hljs">private IEnumerator Wait()
+&#123;
+    _tweener = transform.DOMove(Vector3.one, 2);
+
+    1)等待动画执行完
+    yield return _tweener.WaitForCompletion();
+
+    2）等待指定的循环次数
+    参数为执行次数，等待传入的循环次数后，继续执行
+    若是传入的次数大于动画的循环次数 则在动画结束时继续执行
+    yield return _tweener.WaitForElapsedLoops(2);
+
+    3）等待动画被杀死
+    yield return _tweener.WaitForKill();
+
+    4）等待动画执行指定时间
+    参数为时间，动画执行传入的时间之后或动画执行完毕，继续执行
+    yield return _tweener.WaitForPosition(0.5f);
+
+    5）等待动画回退
+    以下情况会继续执行函数
+    使用DORestart重新播放时
+    使用Rewind倒播动画完成时
+    使用DOFlip翻转动画完成时
+    使用DOPlayBackwards反向播放动画完成时
+    yield return _tweener.WaitForRewind();
+
+    6）等待Start执行后继续执行
+    yield return _tweener.WaitForStart();
+&#125;
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Dotween/">#Dotween</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Dotween插件</div>
+      <div>http://example.com/2022/12/13/Dotween插件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LuoXiaoHei</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/06/Unity-2D%E5%85%89%E7%85%A7/" title="Unity_2D光照">
+                        <span class="hidden-mobile">Unity_2D光照</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"JJ0qJNdRXo48EekoqmBPKx7h-gzGzoHsz","appKey":"waRQCBXK6dbmxHXzxtm30P7w","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
